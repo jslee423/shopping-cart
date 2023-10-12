@@ -18,5 +18,5 @@ app.get('*', (req, res) => {
     res.status(404).send("API not found")
 })
 
-console.log("listening on port 9090")
-app.listen(9090)
+console.log("listening on port 9000")
+app.listen(9000)

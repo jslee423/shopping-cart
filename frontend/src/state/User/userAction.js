@@ -11,7 +11,7 @@ export const ADD_USER_TO_STORE = (newUser) => {
 
 export const SAVE_USER_TO_DB = (user, navigate) => {
     return (dispatch) => {
-        axios.post('http://localhost:9090/user/signup', user)
+        axios.post('http://localhost:9000/user/signup', user)
         .then((response) => {
             const signedUser = response.data
             // console.log(response)
@@ -28,7 +28,7 @@ export const SAVE_USER_TO_DB = (user, navigate) => {
 
 export const LOGIN_USER = (username, password, navigate) => {
     return (dispatch) => {
-        axios.post('http://localhost:9090/user/login', {userName: username, password: password})
+        axios.post('http://localhost:9000/user/login', {userName: username, password: password})
         .then((response) => {
             const signedUser = response.data
             console.log("login response ", signedUser)
