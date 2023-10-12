@@ -1,0 +1,65 @@
+@import '../utilities/variables';
+
+.signup {
+    // width: 100%;
+    // min-height: 100vh;
+    min-height: $heightMinNav;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    form {
+        // width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // row-gap: .5rem;
+
+        input:nth-child(-n+3) {
+            margin-bottom: 1rem;
+        }
+
+        input {
+            background-color: rgb(236, 236, 236);
+            border: none;
+            font-size: 1rem;
+            // padding: .1rem 2rem .1rem 2rem;
+            width: 15rem;
+            text-align: center;
+
+            &::placeholder {
+                text-align: center;
+            }
+
+            &:focus::placeholder {
+                color: transparent;
+            }
+        }
+
+        button {
+            border: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            padding: .1rem 1rem .1rem 1rem;
+            font-size: 1.2rem;
+            background-color: $highlight;
+            color: white;
+        }
+    }
+
+    h1 {
+        font-size: 3rem;
+        font-weight: bolder;
+        margin: 0;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+        color: $highlight
+    }
+}
