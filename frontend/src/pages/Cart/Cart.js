@@ -2,13 +2,15 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CartItem from '../../components/Cart/CartItem'
 import CartSummary from '../../components/Cart/CartSummary'
-import './Cart.scss'
 import { EMPTY_CART, SAVE_CART_TO_DB } from '../../state/Cart/cartAction'
+import { useNavigate } from 'react-router-dom'
+import './Cart.scss'
 
 const Cart = (props) => {
     const cartList = useSelector(state => state.cartReducer)
     const user = useSelector(state => state.userReducer.user)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (user._id) {
