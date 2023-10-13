@@ -19,4 +19,10 @@
     border: none;
     background-color: rgb(236, 236, 236);
     text-align: center;
+    width: 5rem;
+
+    &::-webkit-inner-spin-button, 
+    ::-webkit-outer-spin-button {  
+        opacity: 1;
+    }
 }
