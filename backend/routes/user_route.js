@@ -9,12 +9,11 @@ route.post('/signup', (req, res) => {
     .then((existingUser) => {
         if (existingUser) {
             console.log("sign in success ", existingUser);
-            // res.send(existingUser)
             res.status(401).send("username already exists")
         } else {
-            let newUser = new userDataModel(user) //req.body
+            let newUser = new userDataModel(user)
 
-            newUser.save().then((newUser) => { //will get _id once document is created
+            newUser.save().then((newUser) => {
                 console.log("successful signup ", newUser);
                 res.send(newUser);
             }).catch((error) => {

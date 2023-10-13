@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
-import ProductItem from './ProductItem'
 import { useDispatch, useSelector } from 'react-redux'
+import ProductItem from './ProductItem'
 import { GET_PRODUCTS_FROM_DB } from '../../state/Products/productAction'
+
 import './ProductGrid.scss'
 
 const ProductGrid = () => {

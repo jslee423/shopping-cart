@@ -8,7 +8,6 @@ nav a:visited {
     color: inherit;
 }
 .navbar {
-    // background-color: blue;
     box-sizing: border-box;
     width: 100%;
     height: $navbarHeight;
@@ -17,14 +16,9 @@ nav a:visited {
     justify-content:flex-end;
     align-items: center;
     font-size: 1.3rem;
-    // gap: 10rem;
 
     a {
         text-decoration: none;
-
-        // &:visited {
-        //     color: inherit;
-        // }
     }
 
     .active {
@@ -49,7 +43,6 @@ nav a:visited {
 
     #navright {
         width: $widthSide;
-        // background-color: blue;
         display: flex;
         justify-content: flex-end;
         gap: 1rem;

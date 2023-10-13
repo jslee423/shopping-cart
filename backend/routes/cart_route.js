@@ -14,9 +14,9 @@ route.post("/saveusercart", (req, res) => {
             }).catch((error) => {
                 res.send("error occurred " + error)
             })
-        } else { //update the cart for given user
+        } else {
             console.log("cart items present, replacing/updating")
-            cartDbObj.cart = req.body.cart //replacing db cart with cart that user has sent form cart component
+            cartDbObj.cart = req.body.cart
 
             cartDbObj.save().then((data) => {
                 setTimeout(() => {

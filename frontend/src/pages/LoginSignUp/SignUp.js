@@ -1,8 +1,9 @@
-import React, { useRef, useState, useEffect, useContext } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { SAVE_USER_TO_DB, LOGIN_USER } from '../../state/User/userAction'
+import { SAVE_USER_TO_DB } from '../../state/User/userAction'
 import { ADD_ERROR_TO_STORE } from '../../state/Errors/errorAction' 
+
 import './SignUp.scss'
 
 const SignUp = () => {
@@ -16,10 +17,6 @@ const SignUp = () => {
     const [password, setPassword] = useState('')
     const [address, setAddress] = useState('')
     const [mobile, setMobile] = useState('')
-
-    // useEffect(() => {
-    //     userRef.current.focus()
-    // }, [])
 
     useEffect(() => {
         dispatch(ADD_ERROR_TO_STORE(null, ''))
@@ -65,10 +62,8 @@ const SignUp = () => {
     return (
         <section className='signup'>
             <h1>sign up</h1>
-            {/* <p ref={errorRef} className={errorMsg ? "errmsg" : "offscreen"} aria-live="assertive">{error.message}</p> */}
             <p className="errorMessage" aria-live="assertive">{error.message}</p>
             <form onSubmit={handleSubmit}>
-                {/* <label htmlFor="username">username:</label> */}
                 <input
                     type="text"
                     id="username"
@@ -76,13 +71,10 @@ const SignUp = () => {
                     autoComplete='off'
                     onChange={(e) => setUserName(e.target.value)}
                     onClick={resetInputs}
-                    // value={user}
                     value={userName}
-                    // value={error.status != 200 || error.status != null ? error.message : userName}
                     placeholder='username'
                     required
                 />
-                {/* <label htmlFor="username">password:</label> */}
                 <input
                     type="password"
                     id="password"

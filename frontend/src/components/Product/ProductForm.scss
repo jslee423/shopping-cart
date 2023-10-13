@@ -5,7 +5,6 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    // border-bottom: .1rem solid;
     padding-bottom: 1rem;
     border-bottom: .1rem solid transparent;
     border-image: linear-gradient(0.25turn, white, $highlight, white);
@@ -26,7 +25,6 @@
             background-color: rgb(236, 236, 236);
             border: none;
             font-size: 1rem;
-            // padding: .1rem 2rem .1rem 2rem;
             width: 15rem;
             text-align: center;
 
@@ -54,7 +52,6 @@
             font-size: 1.2rem;
             background-color: $highlight;
             color: white;
-            // height: 2rem;
             align-self: flex-end;
         }
     }

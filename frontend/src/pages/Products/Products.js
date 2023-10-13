@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import ProductForm from '../../components/Product/ProductForm'
-import { GET_PRODUCTS_FROM_DB } from '../../state/Products/productAction'
-import ProductItem from '../../components/Product/ProductItem'
-import './Products.scss'
 import ProductGrid from '../../components/Product/ProductGrid'
+
+import './Products.scss'
 
 const Products = () => {
     const user = useSelector(state => state.userReducer.user)

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { SAVE_PRODUCT_TO_DB } from '../../state/Products/productAction'
 import { ADD_ERROR_TO_STORE } from '../../state/Errors/errorAction'
+
 import './ProductForm.scss'
 
 const ProductForm = () => {
@@ -32,7 +33,6 @@ const ProductForm = () => {
 
     const resetInputs = (e) => {
         const id = e.target.id
-        // console.log("error ", error)
         if (error.status === 202) {
             setName('')
             setPrice('')
@@ -44,8 +44,6 @@ const ProductForm = () => {
         } else if (id === "description" && error.status === 401) {
             setDescription('')
         }
-            // setRating('')
-            // document.getElementById("rating").selectedIndex = 0;
         
     }
 
@@ -59,12 +57,10 @@ const ProductForm = () => {
                     <input
                         type="text"
                         id="name"
-                        // ref={userRef}
                         autoComplete='off'
                         onChange={(e) => setName(e.target.value)}
                         onClick={resetInputs}
                         value={name}
-                        // value={error.status != 200 ? error.message : name}
                         placeholder='product name'
                         required
                     />
@@ -95,15 +91,6 @@ const ProductForm = () => {
                     />
                 </section>
                 <section className='prodFormSection'>
-                    {/* <input
-                        type="number"
-                        id="rating"
-                        autoComplete='off'
-                        onChange={(e) => setMobile(e.target.value)}
-                        value={mobile}
-                        placeholder='phone number'
-                        required
-                    /> */}
                     <label htmlFor="rating">rating</label>
                     <select name="rating" id="rating" onChange={(e) => setRating(e.target.value)}>
                         <option value="1">1</option>

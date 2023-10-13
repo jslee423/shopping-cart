@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { REMOVE_ITEM_FROM_CART, UPDATE_ITEM_IN_CART } from '../../state/Cart/cartAction'
+import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
+import { REMOVE_ITEM_FROM_CART, UPDATE_ITEM_IN_CART } from '../../state/Cart/cartAction'
 import trashImg from '../../images/trash.png'
+
 import './CartItem.scss'
 
 const CartItem = (props) => {
@@ -10,9 +11,6 @@ const CartItem = (props) => {
     const [newQuantity, setNewQuantity] = useState(item.quantity)
     const dispatch = useDispatch()
     const location = useLocation()
-    // console.log(location.pathname)
-    // const cartList = useSelector(state => state.cartReducer)
-    // console.log(cartList)
 
     useEffect(() => {
         dispatch(UPDATE_ITEM_IN_CART(item._id, newQuantity))
@@ -21,7 +19,6 @@ const CartItem = (props) => {
     const quantityOnChange = (e) => {
         const value = e.target.value
         setNewQuantity(value)
-        console.log("quantity ", newQuantity)
     }
 
     return (
@@ -29,7 +26,6 @@ const CartItem = (props) => {
             <td>{item.name}</td>
             <td>{item.description}</td>
             <td>${item.price.toFixed(2)}</td>
-            {/* <td>{item.quantity}</td> */}
             <td>{
                 props.readOnly ? newQuantity : 
                 location.pathname === '/cart' ?
@@ -42,7 +38,6 @@ const CartItem = (props) => {
                 location.pathname === '/cart' ?
                 <>
                     <td><button onClick={()=>{dispatch(REMOVE_ITEM_FROM_CART(item._id))}} id="removeIcon"><img src={trashImg} alt="trash can icon"/></button></td>
-                    {/* <td><button onClick={()=>{dispatch(UPDATE_ITEM_IN_CART(item._id, newQuantity))}}>edit</button></td> */}
                 </>
                 : ""
             }

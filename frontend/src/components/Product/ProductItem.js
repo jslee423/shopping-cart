@@ -1,23 +1,21 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ADD_ITEM_TO_CART, UPDATE_ITEM_IN_CART } from '../../state/Cart/cartAction'
+
 import './ProductItem.scss'
 
 const ProductItem = ({product}) => {
     const cart = useSelector(state => state.cartReducer)
     const dispatch = useDispatch()
     const [showAdd, setShowAdd] = useState(false);
-    // console.log(showAdd)
 
     const addProductToCart = (product) => {
         const cartItem = cart.find(item => item._id === product._id)
-        console.log("found", cartItem)
         if (cartItem) {
             dispatch(UPDATE_ITEM_IN_CART(cartItem._id, cartItem.quantity+1))
         } else {
             dispatch(ADD_ITEM_TO_CART(product))
         }
-        // dispatch(AddItemToCart(product))
     }
 
     return (

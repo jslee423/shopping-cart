@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import cartImg from '../../images/cart.png'
+
 import './Navbar.scss'
 
 const Navbar = () => {
@@ -29,7 +29,6 @@ const Navbar = () => {
             </nav>
             <nav id="navright">
                 <NavLink to="/login" activeclassname="active">{user.userName ? user.userName : "login"}</NavLink>
-                {/* <NavLink to="/cart" activeClassName="active"><img src={cartImg} alt="cart icon" id="cartIcon" /></NavLink> */}
                 <NavLink to="/cart" activeclassname="active">cart <span id='cartCount'>({recalculate(cartList)})</span></NavLink>
             </nav>
         </nav>

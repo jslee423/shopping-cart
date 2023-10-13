@@ -1,7 +1,7 @@
-const mongooseObj = require("mongoose")
-const schemaObj = mongooseObj.Schema
+const mongoose = require("mongoose")
+const schemaObj = mongoose.Schema
 
-mongooseObj.connect("mongodb://127.0.0.1/shopping-cart")
+mongoose.connect("mongodb://127.0.0.1/shopping-cart")
 
 let userSchema = new schemaObj(
     {
@@ -12,6 +12,6 @@ let userSchema = new schemaObj(
     }
 )
 
-let UserModel = mongooseObj.model("user", userSchema)
+let userModel = mongoose.model("user", userSchema)
 
-module.exports = UserModel
+module.exports = userModel

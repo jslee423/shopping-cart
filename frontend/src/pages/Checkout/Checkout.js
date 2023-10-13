@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import CartItem from '../../components/Cart/CartItem'
 import CartSummary from '../../components/Cart/CartSummary'
+
 import './Checkout.scss'
 
 const Checkout = () => {

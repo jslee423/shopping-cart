@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import CartItem from '../../components/Cart/CartItem'
 import CartSummary from '../../components/Cart/CartSummary'
 import { EMPTY_CART, SAVE_CART_TO_DB } from '../../state/Cart/cartAction'
-import { useNavigate } from 'react-router-dom'
+
 import './Cart.scss'
 
 const Cart = (props) => {
@@ -33,14 +34,6 @@ const Cart = (props) => {
         }
     }
 
-    // const clickToSaveCart = (cart, userid) => {
-    //     if (!userid) {
-    //         alert("Please sign in to save the cart")
-    //     } else {
-    //         dispatch(SAVE_CART_TO_DB(cart, userid))
-    //     }
-    // }
-
     const checkout = (event)=>{
         navigate('/checkout');
         event.preventDefault();
@@ -61,13 +54,6 @@ const Cart = (props) => {
                                 <th>price</th>
                                 <th>quantity</th>
                                 <th>total</th>
-                                {/* {
-                                    props.readOnly ? "" : //by default false
-                                    <>
-                                        <th></th>
-                                        <th>Edit</th>
-                                    </>
-                                } */}
                             </tr>
                         </thead>
                         <tbody>
@@ -82,7 +68,6 @@ const Cart = (props) => {
                     {
                         props.readOnly ? <></> :
                         <div className='cartButtons'>
-                            {/* <button onClick={() => {clickToSaveCart(cartList, user._id)}}>save cart</button> */}
                             <button onClick={() => {dispatch(EMPTY_CART())}}>empty cart</button>
                             <button onClick={checkout}>checkout &#8614;</button>
                         </div>

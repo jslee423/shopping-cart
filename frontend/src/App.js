@@ -8,6 +8,7 @@ import Cart from "./pages/Cart/Cart"
 import SignUp from "./pages/LoginSignUp/SignUp"
 import About from "./pages/About/About"
 import Checkout from "./pages/Checkout/Checkout"
+
 import './App.scss'
 
 

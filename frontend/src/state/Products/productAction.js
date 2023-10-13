@@ -14,7 +14,6 @@ export const SAVE_PRODUCT_TO_DB = (product) => {
         axios.post('http://localhost:9000/product/addproduct', product)
         .then((ServerData) => {
             let addProduct = ServerData.data
-            // console.log(addProduct)
             dispatch(ADD_PRODUCT_TO_STORE(addProduct))
             dispatch(ADD_ERROR_TO_STORE(202, 'product successfully added'))
             dispatch(GET_PRODUCTS_FROM_DB())
@@ -28,13 +27,9 @@ export const SAVE_PRODUCT_TO_DB = (product) => {
 
 export const GET_PRODUCTS_FROM_DB = () => {
     return (dispatch) => {
-        // console.log("getDB return block")
         axios.get('http://localhost:9000/product/getproducts')
         .then((res) => {
             const allProducts = res.data
-            // console.log("axios then block")
-            // console.log("All Products: ", allProducts)
-            // return allProducts
             dispatch(ADD_PRODUCT_TO_STORE(allProducts))
         })
         .catch((error) => {

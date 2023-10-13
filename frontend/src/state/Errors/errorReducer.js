@@ -2,13 +2,7 @@ import * as actionTypes from '../actionTypes';
 
 const initialState = {
     status: null,
-    message: null,
-    // user: {
-    //     userName: "",
-    //     password: "",
-    //     address: "",
-    //     mobile: null
-    // }
+    message: null
 }
 
 let errorReducer = (state = initialState, action) => {
