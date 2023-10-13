@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { SAVE_USER_TO_DB, LOGIN_USER } from '../state/User/userAction'
-import { ADD_ERROR_TO_STORE } from '../state/Errors/errorAction' 
-import AuthContext from '../context/AuthProvider'
+import { SAVE_USER_TO_DB, LOGIN_USER } from '../../state/User/userAction'
+import { ADD_ERROR_TO_STORE } from '../../state/Errors/errorAction' 
+import AuthContext from '../../context/AuthProvider'
 import './Login.scss'
 
 const Login = () => {
@@ -43,9 +43,9 @@ const Login = () => {
 
     const resetInputs = (e) => {
         const id = e.target.id
-        if (id === "username" && error.status != 200) {
+        if (id === "username" && error.status) {
             setUser('')
-        } else if (id === "password" && error.status != 200) {
+        } else if (id === "password" && error.status) {
             setPassword('')
         }
     }
@@ -54,6 +54,7 @@ const Login = () => {
         <section className='login'>
             <h1>login</h1>
             {/* <p ref={errorRef} className={errorMsg ? "errmsg" : "offscreen"} aria-live="assertive">{error.message}</p> */}
+            <p className="errorMessage" aria-live="assertive">{error.message}</p>
             <form onSubmit={handleSubmit}>
                 {/* <label htmlFor="username">username:</label> */}
                 <input
@@ -63,8 +64,8 @@ const Login = () => {
                     autoComplete='off'
                     onChange={(e) => setUser(e.target.value)}
                     onClick={resetInputs}
-                    // value={user}
-                    value={error.status === 404 ? error.message : user}
+                    value={user}
+                    // value={error.status === 404 ? error.message : user}
                     placeholder='username'
                     required
                 />
@@ -75,8 +76,8 @@ const Login = () => {
                     id="password"
                     onChange={(e) => setPassword(e.target.value)}
                     onClick={resetInputs}
-                    // value={password}
-                    value={error.status === 401 ? error.message : password}
+                    value={password}
+                    // value={error.status === 401 ? error.message : password}
                     placeholder='password'
                     required
                 />
@@ -84,7 +85,7 @@ const Login = () => {
             </form>
             <p>
                 need an account?<br />
-                <span className='line'><NavLink to="/signup" activeClassName="active">sign up</NavLink></span>
+                <span className='line'><NavLink to="/signup" activeclassname="active">sign up</NavLink></span>
             </p>
         </section>
     )

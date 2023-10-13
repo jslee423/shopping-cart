@@ -2,7 +2,7 @@ import * as actionTypes from '../actionTypes';
 
 const initialState = {
     status: null,
-    message: "",
+    message: null,
     // user: {
     //     userName: "",
     //     password: "",

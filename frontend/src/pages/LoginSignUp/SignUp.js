@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { SAVE_USER_TO_DB, LOGIN_USER } from '../state/User/userAction'
-import { ADD_ERROR_TO_STORE } from '../state/Errors/errorAction' 
+import { SAVE_USER_TO_DB, LOGIN_USER } from '../../state/User/userAction'
+import { ADD_ERROR_TO_STORE } from '../../state/Errors/errorAction' 
 import './SignUp.scss'
 
 const SignUp = () => {
@@ -17,9 +17,9 @@ const SignUp = () => {
     const [address, setAddress] = useState('')
     const [mobile, setMobile] = useState('')
 
-    useEffect(() => {
-        userRef.current.focus()
-    }, [])
+    // useEffect(() => {
+    //     userRef.current.focus()
+    // }, [])
 
     useEffect(() => {
         dispatch(ADD_ERROR_TO_STORE(null, ''))
@@ -50,10 +50,15 @@ const SignUp = () => {
 
     const resetInputs = (e) => {
         const id = e.target.id
-        if (id === "username" && error.status != 200) {
+        console.log(error)
+        if (id === "username" && error.status) {
             setUserName('')
-        } else if (id === "password" && error.status != 200) {
+        } else if (id === "password" && error.status) {
             setPassword('')
+        } else if (id === "address" && error.status) {
+            setAddress('')
+        } else if (id === "mobile" && error.status) {
+            setMobile('')
         }
     }
 
@@ -61,6 +66,7 @@ const SignUp = () => {
         <section className='signup'>
             <h1>sign up</h1>
             {/* <p ref={errorRef} className={errorMsg ? "errmsg" : "offscreen"} aria-live="assertive">{error.message}</p> */}
+            <p className="errorMessage" aria-live="assertive">{error.message}</p>
             <form onSubmit={handleSubmit}>
                 {/* <label htmlFor="username">username:</label> */}
                 <input
@@ -71,7 +77,8 @@ const SignUp = () => {
                     onChange={(e) => setUserName(e.target.value)}
                     onClick={resetInputs}
                     // value={user}
-                    value={error.status === 401 ? error.message : userName}
+                    value={userName}
+                    // value={error.status != 200 || error.status != null ? error.message : userName}
                     placeholder='username'
                     required
                 />
@@ -90,6 +97,7 @@ const SignUp = () => {
                     id="address"
                     autoComplete='off'
                     onChange={(e) => setAddress(e.target.value)}
+                    onClick={resetInputs}
                     value={address}
                     placeholder='address'
                     required
@@ -99,6 +107,7 @@ const SignUp = () => {
                     id="mobile"
                     autoComplete='off'
                     onChange={(e) => setMobile(e.target.value)}
+                    onClick={resetInputs}
                     value={mobile}
                     placeholder='phone number'
                     required
@@ -107,7 +116,7 @@ const SignUp = () => {
             </form>
             <p>
                 already have an account?<br />
-                <span className='line'><NavLink to="/login" activeClassName="active">login</NavLink></span>
+                <span className='line'><NavLink to="/login" activeclassname="active">login</NavLink></span>
             </p>
         </section>
     )

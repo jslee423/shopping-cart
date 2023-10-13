@@ -1,6 +1,6 @@
-@import '../utilities/variables';
+@import '../../utilities/variables';
 
-.signup {
+.login {
     // width: 100%;
     // min-height: 100vh;
     min-height: $heightMinNav;
@@ -16,7 +16,7 @@
         align-items: center;
         // row-gap: .5rem;
 
-        input:nth-child(-n+3) {
+        input:nth-child(1) {
             margin-bottom: 1rem;
         }
 
@@ -62,4 +62,13 @@
         text-decoration: none;
         color: $highlight
     }
+
+    .errorMessage {
+        color: red;
+        margin: 0;
+    }
+
+    // a:visited {
+    //     color: inherit;
+    // }
 }

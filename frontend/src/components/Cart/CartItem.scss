@@ -1,0 +1,22 @@
+@import '../../utilities/variables';
+
+
+#removeIcon {
+    display: flex;
+    // justify-content: center;
+    // align-items: center;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    img {
+        width: 100%;
+        height: 1.5rem;
+    }
+}
+
+#cartqty {
+    border: none;
+    background-color: rgb(236, 236, 236);
+    text-align: center;
+}
