@@ -1,0 +1,72 @@
+@import '../../utilities/variables';
+
+$widthSide: 15%;
+$widthMiddle: calc(100% - $widthSide - $widthSide);
+
+// need to separate or active link style breaks
+nav a:visited {
+    color: inherit;
+}
+.navbar {
+    box-sizing: border-box;
+    width: 100%;
+    height: $navbarHeight;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    font-size: 1.3rem;
+
+    a {
+        text-decoration: none;
+
+        &:hover {
+            color: $highlight;
+        }
+    }
+
+    .active {
+        color: $highlight;
+    }
+
+    #navleft {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: $widthSide;
+        gap: 10rem
+    }
+
+    #navmiddle {
+        width: $widthMiddle;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    #navright {
+        width: $widthSide;
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        align-items: center;
+
+        #logout {
+            display: flex;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+
+            img {
+                height: 1.2rem;
+                width: auto;
+            }
+        }
+        
+        #cartCount {
+            font-size: 1rem;
+        }
+    }
+}

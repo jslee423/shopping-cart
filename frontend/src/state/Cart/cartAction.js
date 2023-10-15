@@ -38,7 +38,7 @@ export const SAVE_CART_TO_DB = (cart, userid) => {
         axios.post('http://localhost:9000/cart/saveusercart',
             {userid, cart}
         ).then((ServerData) => {
-            console.log(ServerData)
+            console.log(ServerData.data.cart)
         })
         .catch((error) => {
             console.log("Error while saving cart", error)
@@ -47,7 +47,7 @@ export const SAVE_CART_TO_DB = (cart, userid) => {
 }
 
 export const GET_USER_CART = (userid) => {
-    console.log("get list of user items in cart")
+    // console.log("get list of user items in cart")
     return (dispatch) => {
         axios.post("http://localhost:9000/cart/getusercart",
             {userid}
@@ -56,7 +56,7 @@ export const GET_USER_CART = (userid) => {
             dispatch(EMPTY_CART())
 
             for (const item of response.data.cart) {
-                console.log("item in for of", item)
+                // console.log("item in for of", item)
                 let action = ADD_ITEM_TO_CART(item)
                 dispatch(action)
             }

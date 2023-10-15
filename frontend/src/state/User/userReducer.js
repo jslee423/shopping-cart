@@ -2,8 +2,11 @@ import * as actionTypes from '../actionTypes';
 
 const initialState = {
     user: {
+        _id: "",
         userName: "",
         password: "",
+        firstName: "",
+        lastName: "",
         address: "",
         mobile: null
     }
