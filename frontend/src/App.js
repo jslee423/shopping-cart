@@ -4,6 +4,7 @@ import AnimatedRoutes from "./components/AnimatedRoutes"
 import Navbar from "./components/Navbar"
 
 import './App.scss'
+import Footer from "./components/Footer"
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
             <Suspense fallback={<div>Loading...</div>}>
                 <Navbar />
                 <AnimatedRoutes />
+                <Footer />
             </Suspense>
         </BrowserRouter>
     )

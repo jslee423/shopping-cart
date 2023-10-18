@@ -3,13 +3,23 @@
 .payment {
     display: flex;
     flex-direction: column;
-    // justify-content: center;
-    align-items: space-between;
-    // justify-content: space-between;
     width: 100%;
+    min-height: $heightMinNav;
 
     h1 {
         align-self: center;
+    }
+
+    .isLoading {
+        align-self: center;
+        justify-self: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h2 {
+            margin: 0;
+        }
     }
 
     .paymentBody {
@@ -24,9 +34,6 @@
             border-radius: 10px;
             padding-left: 1rem;
             padding-top: 1rem;
-            // display: flex;
-            // flex-direction: column;
-            // align-items: flex-start;
 
             p {
                 margin: 0;
@@ -78,4 +85,12 @@
             }
         }
     }
+}
+
+.paymentDefault {
+    align-items: space-between;
+}
+.paymentProcessing {
+    align-items: center;
+    justify-content: center;
 }

@@ -10,6 +10,7 @@ import Payment from "../pages/Payment"
 import Profile from "../pages/Profile"
 import Products from "../pages/Products"
 import Login from "../pages/Login"
+import OrderSummary from '../pages/OrderSummary'
 
 const AnimatedRoutes = () => {
     const location = useLocation()
@@ -26,6 +27,7 @@ const AnimatedRoutes = () => {
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/payment" element={<Payment />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/ordersummary" element={<OrderSummary />} />
             </Routes>
         </AnimatePresence>
     )

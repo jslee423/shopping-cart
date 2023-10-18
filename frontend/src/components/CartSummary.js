@@ -9,12 +9,11 @@ const CartSummary = (props) => {
     const shipping = 5.00
     const total = amount * tax + shipping
     const location = useLocation()
-    console.log(location.pathname)
 
     return (
         <div className={location.pathname === '/cart' ? 'cartsummary' : 'checkoutsummary'}>
             <h4>subtotal ({count} items): ${amount.toFixed(2)}</h4>
-            {location.pathname === '/checkout' || location.pathname === '/payment' ?
+            {location.pathname != '/cart' ?
             <>
                 <h4>tax: ${(amount * .06).toFixed(2)}</h4>
                 <h4>shipping: $5.00</h4>

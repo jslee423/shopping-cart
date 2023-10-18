@@ -93,9 +93,12 @@ const SignUp = () => {
     return (
         <motion.section 
             className='signup'
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: {duration: 0.1} }}
+            // initial={{ opacity: 0 }}
+            // animate={{ opacity: 1 }}
+            // exit={{ opacity: 0, transition: {duration: 0.1} }}
+            initial={{ width: 0 }}
+            animate={{ width: '100%' }}
+            exit={{ width: window.innerWidth, transition: {duration: 0.1} }}
         >
             <h1>sign up</h1>
             <p className="errorMessage" aria-live="assertive">{error.message}</p>

@@ -27,35 +27,28 @@
         }
     }
 
-    &:hover {
-        transition: all .2s ease-in-out;
-        transform: scale(1.1); 
-    }
-
-    #addButtonShow {
-        cursor: pointer;
-        font-size: 4rem;
+    #addProductBtn {
+        justify-self: center;
         border: none;
-        background-color: $highlight;
-        opacity: 0.6;
+        border-radius: 100%;
+        background-color: rgb(255, 247, 0);
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    #addButtonHide {
+        // bottom: 4.5rem;
+        top: 0.5rem;
+        right: 0.5rem;
+        font-size: 1rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
         cursor: pointer;
-        display: none;
-        font-size: 4rem;
-        border: none;
-        background-color: $highlight;
-        opacity: 0.6;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+
+        &:hover {
+            transition: all .2s ease-in-out;
+            transform: scale(1.5) rotate(1turn);
+        }
+
+        &:not(:hover) {
+            transition: all .2s ease-in-out;
+            transform: scale(1) rotate(-1turn);
+        }
     }
 }

@@ -8,6 +8,8 @@ const productRoute = require('./routes/product_route')
 const productApp = express()
 const cartRoute = require('./routes/cart_route')
 const cartApp = express()
+const orderRoute = require('./routes/order_route')
+const orderApp = express()
 
 console.log('in server.js')
 
@@ -23,6 +25,9 @@ productApp.use('/', productRoute)
 
 app.use('/cart', cartApp)
 cartApp.use('/', cartRoute)
+
+app.use('/order', orderApp)
+orderApp.use('/', orderRoute)
 
 app.get('*', (req, res) => {
     res.status(404).send("API not found")

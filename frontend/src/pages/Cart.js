@@ -43,9 +43,12 @@ const Cart = (props) => {
     return (
         <motion.div
             className='cart'
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: {duration: 0.1} }}
+            // initial={{ opacity: 0 }}
+            // animate={{ opacity: 1 }}
+            // exit={{ opacity: 0, transition: {duration: 0.1} }}
+            initial={{ width: 0 }}
+            animate={{ width: '100%' }}
+            exit={{ width: window.innerWidth, transition: {duration: 0.1} }}
         >
             <h1>shopping cart</h1>
             <div className='cartItemList'>

@@ -36,7 +36,7 @@ const Navbar = () => {
                 <NavLink to="/about" activeclassname="active">about</NavLink>
             </nav>
             <nav id="navright">
-                {user._id && <button id='logout' onClick={() => logout()}><img src={exitImg} alt='logout icon' /></button>}
+                {user._id && <button id='logout' title="logout" onClick={() => logout()}><img src={exitImg} alt='logout icon' /></button>}
                 <NavLink to={user._id ? "/profile" : "/login"} activelassname="active">{user._id ? user.userName : "login"}
                 </NavLink>
                 <NavLink to="/cart" activeclassname="active">cart <span id='cartCount'>({recalculate(cartList)})</span></NavLink>

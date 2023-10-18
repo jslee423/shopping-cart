@@ -24,6 +24,10 @@ div a:visited {
         border: none;
         background-color: transparent;
         font-size: 1.3rem;
+
+        &:hover {
+            color: $highlight;
+        }
     }
 
     .userInfo {
@@ -44,6 +48,10 @@ div a:visited {
             text-decoration: underline;
             align-self: flex-start;
             padding-left: 0;
+
+            &:hover {
+                color: $highlight;
+            }
         }
 
         #cancelUpdate {
@@ -53,6 +61,10 @@ div a:visited {
             font-size: 1rem;
             cursor: pointer;
             text-decoration: underline;
+
+            &:hover {
+                color: $highlight;
+            }
         }
 
         p {
