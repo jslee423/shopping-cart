@@ -12,6 +12,7 @@ const initialState = {
         },
         orderItems: []
     },
+    cancelDate: '',
     recentOrders: [],
     canceledOrders: []
 }

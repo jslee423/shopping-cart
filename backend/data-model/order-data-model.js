@@ -8,7 +8,8 @@ let orderSchema = new schemaObj(
         userid: {type: String, required: true},
         order: {type: Object, required: true},
         dateTime: {type: Date, default: Date.now},
-        status: {type: String, default: "PROCESSING"}
+        status: {type: String, default: "PROCESSING"},
+        cancelDate: {type: Date}
     }
 )
 

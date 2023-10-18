@@ -1,16 +1,16 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import { useLocation, Routes, Route } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
-import Home from "../pages/Home"
-import Cart from "../pages/Cart"
-import SignUp from "../pages/SignUp"
-import About from "../pages/About"
-import Checkout from "../pages/Checkout"
-import Payment from "../pages/Payment"
-import Profile from "../pages/Profile"
-import Products from "../pages/Products"
-import Login from "../pages/Login"
-import OrderSummary from '../pages/OrderSummary'
+const Home = lazy(() => import("../pages/Home"))
+const Cart = lazy(() => import("../pages/Cart"))
+const SignUp = lazy(() => import("../pages/SignUp"))
+const About = lazy(() => import("../pages/About"))
+const Checkout = lazy(() => import("../pages/Checkout"))
+const Payment = lazy(() => import("../pages/Payment"))
+const Profile = lazy(() => import("../pages/Profile"))
+const Products = lazy(() => import("../pages/Products"))
+const Login = lazy(() => import("../pages/Login"))
+const OrderSummary = lazy(() => import('../pages/OrderSummary'))
 
 const AnimatedRoutes = () => {
     const location = useLocation()

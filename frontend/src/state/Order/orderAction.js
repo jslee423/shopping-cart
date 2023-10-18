@@ -72,3 +72,16 @@ export const GET_USER_ORDERS = (userid, status) => {
         })
     }
 }
+
+export const CANCEL_ORDER = (userid, orderid, cancelDate) => {
+    return (dispatch) => {
+        axios.post('http://localhost:9000/order/cancelorder', {userid, orderid, cancelDate})
+        .then(data => {
+            console.log(data)
+            // dispatch(GET_USER_ORDERS(userid, "CANCELLED"))
+        })
+        .catch(error => {
+            console.log("error while cancelling order", error)
+        })
+    }
+}

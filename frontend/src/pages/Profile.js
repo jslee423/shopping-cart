@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { GET_USER_ORDERS } from '../state/Order/orderAction'
+import { CANCEL_ORDER, GET_USER_ORDERS } from '../state/Order/orderAction'
+import RecentOrders from '../components/RecentOrders'
+import CancelledOrders from '../components/CancelledOrders'
 
 import '../styles/pages/Profile.scss'
 
@@ -22,26 +24,6 @@ const Profile = () => {
         }
     }, [])
 
-    const checkOrderDate = (order) => {
-        const currentDate = new Date()
-
-        // orderDate is ISO 8601 date string
-        const jsOrderDate = new Date(order.dateTime); // Convert ISO string to a JavaScript Date object
-        const diffBetween = currentDate - jsOrderDate
-        const diffInDays = diffBetween / (1000 * 3600 * 24)
-
-        if (diffInDays < 2) {
-            return <button id='cancelOrder' onClick={cancelOrder(order._id)}>cancel order</button>
-        } else {
-            return
-
-        }
-    }
-
-    const cancelOrder = (orderId) => {
-        
-    }
-
     return (
         <motion.div 
             className='profile'
@@ -56,29 +38,31 @@ const Profile = () => {
             <h2>recent orders</h2>
             <div className='recentOrders'>
                 {orders.recentOrders && orders.recentOrders.length >= 1 ?
-                <table>
-                    <thead>
-                        <tr>
-                            <th>order #</th>
-                            <th>date</th>
-                            <th># of items</th>
-                            <th>status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {orders.recentOrders.map((order) => {
-                            return (
-                            <tr>
-                                <td>{order._id}</td>
-                                <td>{order.dateTime}</td>
-                                <td>{order.order.orderItems.length}</td>
-                                <td>{order.status}</td>
-                                <td>{checkOrderDate(order)}</td>
-                            </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+                // <table>
+                //     <thead>
+                //         <tr>
+                //             <th>order #</th>
+                //             <th># of items</th>
+                //             <th>date</th>
+                //             <th>status</th>
+                //         </tr>
+                //     </thead>
+                //     <tbody>
+                //         {orders.recentOrders.map((order) => {
+                //             return (
+                //             <tr key={order._id}>
+                //                 <td>{order._id}</td>
+                //                 <td>{order.order.orderItems.length}</td>
+                //                 <td>{order.dateTime}</td>
+                //                 <td>{order.status}</td>
+                //                 <td>{checkOrderDate(order)}</td>
+                //                 <td><button id='reorder'>reorder</button></td>
+                //             </tr>
+                //             )
+                //         })}
+                //     </tbody>
+                // </table>
+                <RecentOrders orders={orders} />
                 : <p>you have not made any orders</p>
                 }
             </div>
@@ -86,9 +70,33 @@ const Profile = () => {
             <h2>cancelled orders</h2>
             <div className='cancelledOrders'>
                 {orders.canceledOrders && orders.canceledOrders.length >= 1 ?
-                orders.canceledOrders.map((order) => {
-                        return<p>order #: {order._id}</p>
-                })
+                // <table>
+                // <thead>
+                //     <tr>
+                //         <th>order #</th>
+                //         <th># of items</th>
+                //         <th>order date</th>
+                //         <th>cancel date</th>
+                //     </tr>
+                // </thead>
+                // <tbody>
+                //     {orders.canceledOrders.map((order) => {
+                //         // console.log(order)
+                //         return (
+                //             <tr key={order._id}>
+                //                 <td>{order._id}</td>
+                //                 <td>{order.order.orderItems.length}</td>
+                //                 <td>{order.dateTime}</td>
+                //                 <td>{order.cancelDate}</td>
+                //                 {/* <td>{checkOrderDate(order)}</td> */}
+                //                 <td><button id='reorder'>reorder</button></td>
+                //             </tr>
+                //             // <p>order #: {order._id}</p>
+                //         )
+                //     })}
+                // </tbody>
+                // </table>
+                <CancelledOrders orders={orders} />
                 : <p>you have not cancelled any orders</p>
                 }
             </div>

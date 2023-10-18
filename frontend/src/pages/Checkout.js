@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate, NavLink } from 'react-router-dom'
 import { motion } from 'framer-motion'
@@ -14,6 +14,15 @@ const Checkout = (props) => {
     const navigate = useNavigate()
     const [updateForm, setUpdateForm] = useState(false)
     const [error, setError] = useState('')
+
+    useEffect(() => {
+        if (cartList.length === 0) {
+            console.log('cart empty')
+            navigate('/cart')
+        } else {
+            console.log('cart not empty')
+        }
+    }, [])
 
     const recalculate = (cartItems)  => {
         let amount = 0

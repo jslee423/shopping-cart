@@ -1,0 +1,9 @@
+@import '../../utilities/variables';
+
+.isLoadingScreen {
+    width: 100%;
+    min-height: $heightMinNav;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

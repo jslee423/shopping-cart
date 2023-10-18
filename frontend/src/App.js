@@ -5,12 +5,13 @@ import Navbar from "./components/Navbar"
 
 import './App.scss'
 import Footer from "./components/Footer"
+import IsLoadingScreen from "./components/IsLoadingScreen"
 
 
 function App() {
     return (
         <BrowserRouter>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<IsLoadingScreen />}>
                 <Navbar />
                 <AnimatedRoutes />
                 <Footer />

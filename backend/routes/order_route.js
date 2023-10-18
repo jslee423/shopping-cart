@@ -24,4 +24,15 @@ route.post("/getuserorders", (req, res) => {
     })
 })
 
+route.post("/cancelorder", (req, res) => {
+    console.log("cancelorder body", req.body)
+    orderDataModel.findOneAndUpdate({userid: req.body.userid, _id: req.body.orderid}, {status: "CANCELLED", cancelDate: req.body.cancelDate})
+    .then((order) => {
+        res.json(order)
+    })
+    .catch((error) => {
+        res.send("error cancelling order" + error)
+    })
+})
+
 module.exports = route
