@@ -37,3 +37,15 @@ export const GET_PRODUCTS_FROM_DB = () => {
         })
     }
 }
+
+export const SAVE_REVIEW_TO_DB = (product_id, review) => {
+    return (dispatch) => {
+        axios.post('http://localhost:9000/product/addreview', {product_id, review})
+        .then((res) => {
+            console.log("review saved ", res)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+}

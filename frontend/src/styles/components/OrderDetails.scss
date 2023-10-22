@@ -1,0 +1,65 @@
+@import '../../utilities/variables';
+
+.orderDetails {
+    width: 100%;
+    // min-height: $heightMinNav;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    h1 {
+        margin-bottom: 0;
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+    #backToProfile {
+        border: none;
+        background-color: transparent;
+        align-self:flex-start;
+        margin-left: 2rem;
+        text-decoration: underline;
+        font-size: 1rem;
+        padding: 0;
+
+        &:visited {
+            color: inherit;
+        }
+
+        &:hover {
+            color: $highlight
+        }
+    }
+
+    table {
+        width: 80%;
+        text-align: center;
+
+        #reviewBtn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+
+            &:hover {
+                transition: all .2s ease-in-out;
+                transform: scale(1.1); 
+            }
+
+            img {
+                height: 2rem;
+                width: auto;
+            }
+        }
+    }
+
+    .orderSummary {
+        margin-top: 2rem;
+        text-align: center;
+        h4 {
+            margin: 0;
+        }
+    }
+}

@@ -4,10 +4,13 @@ import { CANCEL_ORDER, GET_USER_ORDERS } from '../state/Order/orderAction'
 import { UPDATE_ITEM_IN_CART, ADD_ITEM_TO_CART } from '../state/Cart/cartAction'
 
 import '../styles/components/RecentOrders.scss'
+import { useNavigate } from 'react-router-dom'
 
-const RecentOrders = ({ orders }) => {
+const RecentOrders = ({ orders, setOrder, setShowDetails }) => {
     const dispatch = useDispatch()
+    const currentCart = useSelector(state => state.cartReducer)
     const user = useSelector(state => state.userReducer.user)
+    const navigate = useNavigate()
 
     useEffect(() => {
         console.log('effect')
@@ -24,7 +27,7 @@ const RecentOrders = ({ orders }) => {
         if (diffInDays < 2) {
             return <button id='cancelOrder' onClick={() => cancelOrder(user._id, order._id)}>cancel order</button>
         } else {
-            return
+            return <button id="reviewOrder" onClick={() => reviewOrder(order)}>review order</button>
 
         }
     }
@@ -41,6 +44,10 @@ const RecentOrders = ({ orders }) => {
         dispatch(GET_USER_ORDERS(userid, "CANCELLED"))
     }
 
+    const reviewOrder = (order) => {
+        
+    }
+
     const reorder = (orderItems) => {
         console.log("reorder", orderItems)
         for (const item of orderItems) {
@@ -53,6 +60,20 @@ const RecentOrders = ({ orders }) => {
                 dispatch(ADD_ITEM_TO_CART(item))
             }
         }
+    }
+
+    const orderDetails = (order) => {
+        setOrder(order)
+        setShowDetails(true)
+        // navigate('/orderdetails', {state: order})
+    }
+
+    const getItemCount = (orderItems) => {
+        let count = 0;
+        for (const item of orderItems) {
+            count = count + item.quantity
+        }
+        return count
     }
 
     return (
@@ -69,10 +90,10 @@ const RecentOrders = ({ orders }) => {
                 {orders.recentOrders.map((order) => {
                     return (
                     <tr key={order._id}>
-                        <td>{order._id}</td>
-                        <td>{order.order.orderItems.length}</td>
-                        <td>{formatDate(order.dateTime)}</td>
-                        <td>{order.status}</td>
+                        <td onClick={() => orderDetails(order)} title="see order details">{order._id}</td>
+                        <td onClick={() => orderDetails(order)} title="see order details">{getItemCount(order.order.orderItems)}</td>
+                        <td onClick={() => orderDetails(order)} title="see order details">{formatDate(order.dateTime)}</td>
+                        <td onClick={() => orderDetails(order)} title="see order details">{order.status}</td>
                         <td>{checkOrderDate(order)}</td>
                         <td><button id='reorder' onClick={() => reorder(order.order.orderItems)}>reorder</button></td>
                     </tr>

@@ -24,6 +24,17 @@ route.post("/getuserorders", (req, res) => {
     })
 })
 
+route.post("/getuserorderbyid", (req, res) => {
+    console.log("getuser body", req.body)
+    orderDataModel.find({userid: req.body.userid, _id: req.body.orderid})
+    .then((orders) => {
+        res.json(orders)
+    })
+    .catch((error) => {
+        res.send("Error occurred " + error)
+    })
+})
+
 route.post("/cancelorder", (req, res) => {
     console.log("cancelorder body", req.body)
     orderDataModel.findOneAndUpdate({userid: req.body.userid, _id: req.body.orderid}, {status: "CANCELLED", cancelDate: req.body.cancelDate})

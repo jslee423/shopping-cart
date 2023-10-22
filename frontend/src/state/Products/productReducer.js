@@ -5,7 +5,8 @@ const initialState = {
         name: "product name",
         price: 0.00,
         description: "product description",
-        rating: 0
+        rating: 0,
+        review: []
     },
     products: []
 }

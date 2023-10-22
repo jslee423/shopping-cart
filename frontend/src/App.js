@@ -14,7 +14,7 @@ function App() {
             <Suspense fallback={<IsLoadingScreen />}>
                 <Navbar />
                 <AnimatedRoutes />
-                <Footer />
+                {/* <Footer /> */}
             </Suspense>
         </BrowserRouter>
     )

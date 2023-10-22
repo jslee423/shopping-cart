@@ -41,4 +41,18 @@ route.post('/addproduct', (req, res) => {
     })
 })
 
+route.post('/addreview', (req, res) => {
+    let product_id = req.body.product_id
+    let review = req.body.review
+
+    // productDataModel.findByIdAndUpdate({product_id}, {$push: {reviews: review}})
+    productDataModel.findOne({id: product_id})
+    .then(res => {
+        console.log("review added for product id: " + res)
+    })
+    .catch((error) => {
+        console.log("error adding review", error)
+    })
+})
+
 module.exports = route

@@ -7,12 +7,16 @@ import RecentOrders from '../components/RecentOrders'
 import CancelledOrders from '../components/CancelledOrders'
 
 import '../styles/pages/Profile.scss'
+import OrderDetails from '../components/OrderDetails'
 
 const Profile = () => {
     const user = useSelector(state => state.userReducer.user)
     const orders = useSelector(state => state.orderReducer)
+    const [selectedOrder, setSelectedOrder] = useState('')
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const [showDetails, setShowDetails] = useState(false)
+    console.log(selectedOrder)
 
     useEffect(() => {
         if (!user._id) {
@@ -35,71 +39,30 @@ const Profile = () => {
             exit={{ width: window.innerWidth, transition: {duration: 0.1} }}
         >
             <h1>profile</h1>
-            <h2>recent orders</h2>
-            <div className='recentOrders'>
-                {orders.recentOrders && orders.recentOrders.length >= 1 ?
-                // <table>
-                //     <thead>
-                //         <tr>
-                //             <th>order #</th>
-                //             <th># of items</th>
-                //             <th>date</th>
-                //             <th>status</th>
-                //         </tr>
-                //     </thead>
-                //     <tbody>
-                //         {orders.recentOrders.map((order) => {
-                //             return (
-                //             <tr key={order._id}>
-                //                 <td>{order._id}</td>
-                //                 <td>{order.order.orderItems.length}</td>
-                //                 <td>{order.dateTime}</td>
-                //                 <td>{order.status}</td>
-                //                 <td>{checkOrderDate(order)}</td>
-                //                 <td><button id='reorder'>reorder</button></td>
-                //             </tr>
-                //             )
-                //         })}
-                //     </tbody>
-                // </table>
-                <RecentOrders orders={orders} />
-                : <p>you have not made any orders</p>
-                }
-            </div>
-            
-            <h2>cancelled orders</h2>
-            <div className='cancelledOrders'>
-                {orders.canceledOrders && orders.canceledOrders.length >= 1 ?
-                // <table>
-                // <thead>
-                //     <tr>
-                //         <th>order #</th>
-                //         <th># of items</th>
-                //         <th>order date</th>
-                //         <th>cancel date</th>
-                //     </tr>
-                // </thead>
-                // <tbody>
-                //     {orders.canceledOrders.map((order) => {
-                //         // console.log(order)
-                //         return (
-                //             <tr key={order._id}>
-                //                 <td>{order._id}</td>
-                //                 <td>{order.order.orderItems.length}</td>
-                //                 <td>{order.dateTime}</td>
-                //                 <td>{order.cancelDate}</td>
-                //                 {/* <td>{checkOrderDate(order)}</td> */}
-                //                 <td><button id='reorder'>reorder</button></td>
-                //             </tr>
-                //             // <p>order #: {order._id}</p>
-                //         )
-                //     })}
-                // </tbody>
-                // </table>
-                <CancelledOrders orders={orders} />
-                : <p>you have not cancelled any orders</p>
-                }
-            </div>
+            {showDetails ?
+            <OrderDetails order={selectedOrder} setShowDetails={setShowDetails} />
+            :
+            <>
+                <h2>recent orders</h2>
+                <div className='recentOrders'>
+                    {orders.recentOrders && orders.recentOrders.length >= 1 ?
+                    <RecentOrders orders={orders} setOrder={setSelectedOrder} setShowDetails={setShowDetails} />
+                    : <p>you have not made any orders</p>
+                    }
+                </div>
+
+                <h2>completed orders</h2>
+                <div className='completedOrders'></div>
+                
+                <h2>cancelled orders</h2>
+                <div className='cancelledOrders'>
+                    {orders.canceledOrders && orders.canceledOrders.length >= 1 ?
+                    <CancelledOrders orders={orders} />
+                    : <p>you have not cancelled any orders</p>
+                    }
+                </div>
+            </>
+            }
         </motion.div>
     )
 }

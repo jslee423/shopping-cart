@@ -17,6 +17,7 @@
             text-align: center;
             margin: 0;
             padding: 0;
+            cursor: pointer;
         }
     }
       
@@ -24,7 +25,13 @@
         p {
             margin: 0;
             text-align: center;
+            cursor: pointer;
         }
+    }
+
+    #starImg {
+        height: 0.9rem;
+        width: auto;
     }
 
     #addProductBtn {
@@ -50,5 +57,11 @@
             transition: all .2s ease-in-out;
             transform: scale(1) rotate(-1turn);
         }
+    }
+
+    #prodRating {
+        position: absolute;
+        bottom: 0.5rem;
+        right: 0.5rem;
     }
 }

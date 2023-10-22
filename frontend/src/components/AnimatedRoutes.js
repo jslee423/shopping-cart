@@ -1,6 +1,8 @@
 import React, { lazy } from 'react'
 import { useLocation, Routes, Route } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
+import { useSelector } from 'react-redux'
+const ProductDetails = lazy(() => import('../pages/ProductDetails'))
 const Home = lazy(() => import("../pages/Home"))
 const Cart = lazy(() => import("../pages/Cart"))
 const SignUp = lazy(() => import("../pages/SignUp"))
@@ -14,6 +16,7 @@ const OrderSummary = lazy(() => import('../pages/OrderSummary'))
 
 const AnimatedRoutes = () => {
     const location = useLocation()
+    const products = useSelector(state => state.productReducer.products)
 
     return (
         <AnimatePresence mode='wait'>
@@ -28,6 +31,11 @@ const AnimatedRoutes = () => {
                 <Route path="/payment" element={<Payment />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/ordersummary" element={<OrderSummary />} />
+                {products.map((product) => {
+                    return (
+                        <Route path={`/products/${product._id}`} element={<ProductDetails product={product} />} key={product._id} />
+                    )
+                })}
             </Routes>
         </AnimatePresence>
     )

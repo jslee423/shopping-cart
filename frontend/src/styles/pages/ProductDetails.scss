@@ -1,0 +1,35 @@
+@import '../../utilities/variables';
+
+.productDetails {
+    width: 100%;
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+    .breadcrumb {
+        display: flex;
+        margin-top: 2rem;
+
+        p {
+            margin: 0;
+            // margin-left: 0.5rem;
+        }
+
+        .bcDivider {
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+        }
+
+        a {
+            text-decoration: none;
+
+            &:visited {
+                color: inherit;
+            }
+
+            &:hover {
+                color: blue;
+            }
+
+        }
+    }
+}

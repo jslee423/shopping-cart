@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import '../styles/components/CancelledOrders.scss'
 import { ADD_ITEM_TO_CART, UPDATE_ITEM_IN_CART } from '../state/Cart/cartAction'
+import { useNavigate } from 'react-router-dom'
 
 const CancelledOrders = ({ orders }) => {
     const currentCart = useSelector(state => state.cartReducer)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
     const formatDate = (date) => {
         const formatted = new Date(date)
         return formatted.toUTCString()
@@ -26,6 +29,10 @@ const CancelledOrders = ({ orders }) => {
         }
     }
 
+    const orderDetails = (order) => {
+        navigate('/orderdetails', {state: order})
+    }
+
     return (
         <table id="cancelledOrderTable">
             <thead>
@@ -38,17 +45,14 @@ const CancelledOrders = ({ orders }) => {
             </thead>
             <tbody>
                 {orders.canceledOrders.map((order) => {
-                    // console.log(order)
                     return (
                         <tr key={order._id}>
-                            <td>{order._id}</td>
-                            <td>{order.order.orderItems.length}</td>
-                            <td>{formatDate(order.dateTime)}</td>
-                            <td>{formatDate(order.cancelDate)}</td>
-                            {/* <td>{checkOrderDate(order)}</td> */}
+                            <td onClick={() => orderDetails(order)} title="see order details">{order._id}</td>
+                            <td onClick={() => orderDetails(order)} title="see order details">{order.order.orderItems.length}</td>
+                            <td onClick={() => orderDetails(order)} title="see order details">{formatDate(order.dateTime)}</td>
+                            <td onClick={() => orderDetails(order)} title="see order details">{formatDate(order.cancelDate)}</td>
                             <td><button id='reorder' onClick={() => reorder(order.order.orderItems)}>reorder</button></td>
                         </tr>
-                        // <p>order #: {order._id}</p>
                     )
                 })}
             </tbody>
