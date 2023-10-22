@@ -6,7 +6,7 @@ const initialState = {
         price: 0.00,
         description: "product description",
         rating: 0,
-        review: []
+        reviews: []
     },
     products: []
 }
