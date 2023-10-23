@@ -25,6 +25,7 @@
 
         background-color: rgb(236, 236, 236);
         border: none;
+        border-radius: 50px;
         font-size: 1rem;
 
         &::-webkit-outer-spin-button,
@@ -52,7 +53,7 @@
         grid-column: span 2;
         // margin: 0px 100px; /* Adjust padding to make the button smaller */
         border: none;
-        border-radius: 5px;
+        border-radius: 50px;
         font-size: 1.2rem;
         background-color: $highlight;
         color: white;

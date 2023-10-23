@@ -15,10 +15,6 @@ const OrderDetails = ({ order, setShowDetails }) => {
     const [total, setTotal] = useState(0)
     const [showReview, setShowReview] = useState(false)
     const [prodForReview, setProdForReview] = useState('')
-
-    console.log("state", order)
-    console.log("showReview", showReview)
-
     const [isOpen, setIsOpen] = useState(false);
 
     const togglePopup = (item) => {

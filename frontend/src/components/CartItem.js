@@ -29,7 +29,7 @@ const CartItem = (props) => {
             <td>{
                 props.readOnly ? newQuantity : 
                 location.pathname === '/cart' ?
-                <input id='cartqty' type="number" value={newQuantity} onChange={(e) => quantityOnChange(e)}></input>
+                <input className='cartqty' id={`cartqty${item.name}`} type="number" value={newQuantity} onChange={(e) => quantityOnChange(e)}></input>
                 : item.quantity
             }</td>
             <td>${(item.quantity * item.price).toFixed(2)}</td>

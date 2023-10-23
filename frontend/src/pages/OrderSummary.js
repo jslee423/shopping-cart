@@ -52,9 +52,9 @@ const OrderSummary = (props) => {
                 to check order status go to <span className='line'><NavLink to="/profile" activeclassname="active">profile &#8614;</NavLink></span>
             </p>
             <h3 id="shippingHeader">shipping information</h3>
-                    <p>name : {user.firstName} {user.lastName}</p>
-                    <p>address: {user.address}</p>
-                    <p>phone: {formatPhoneNumber(user.mobile)}</p>
+            <p>name: {user.firstName} {user.lastName}</p>
+            <p>address: {user.address}</p>
+            <p>phone: {formatPhoneNumber(user.mobile)}</p>
             <table>
                 <thead>
                     <tr>

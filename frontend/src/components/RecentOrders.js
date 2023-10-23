@@ -13,7 +13,7 @@ const RecentOrders = ({ orders, setOrder, setShowDetails }) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        console.log('effect')
+        
     }, [orders.recentOrders, orders.canceledOrders])
 
     const checkOrderDate = (order) => {
@@ -45,7 +45,8 @@ const RecentOrders = ({ orders, setOrder, setShowDetails }) => {
     }
 
     const reviewOrder = (order) => {
-        
+        setOrder(order)
+        setShowDetails(true)
     }
 
     const reorder = (orderItems) => {

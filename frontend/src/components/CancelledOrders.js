@@ -5,7 +5,7 @@ import '../styles/components/CancelledOrders.scss'
 import { ADD_ITEM_TO_CART, UPDATE_ITEM_IN_CART } from '../state/Cart/cartAction'
 import { useNavigate } from 'react-router-dom'
 
-const CancelledOrders = ({ orders }) => {
+const CancelledOrders = ({ orders, setOrder, setShowDetails }) => {
     const currentCart = useSelector(state => state.cartReducer)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -30,7 +30,9 @@ const CancelledOrders = ({ orders }) => {
     }
 
     const orderDetails = (order) => {
-        navigate('/orderdetails', {state: order})
+        setOrder(order)
+        setShowDetails(true)
+        // navigate('/orderdetails', {state: order})
     }
 
     return (

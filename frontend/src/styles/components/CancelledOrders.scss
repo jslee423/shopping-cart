@@ -6,28 +6,12 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
 
-    #cancelOrder {
-        border: none;
-        // font-size: 0.7rem;
-        border-radius: 5px;
-        background-color: $highlight;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        color: white;
-
-        &:hover {
-            background-color: red;
-            transition: all .2s ease-in-out;
-            transform: scale(1.1); 
-        }
-    }
-
     #reorder {
         border: 1px solid $highlight;
         color: $highlight;
         background-color: transparent;
         // font-size: 0.7rem;
-        border-radius: 5px;
+        border-radius: 50px;
         padding-left: 1rem;
         padding-right: 1rem;
 

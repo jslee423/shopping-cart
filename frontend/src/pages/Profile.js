@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { CANCEL_ORDER, GET_USER_ORDERS } from '../state/Order/orderAction'
+import { GET_USER_ORDERS } from '../state/Order/orderAction'
 import RecentOrders from '../components/RecentOrders'
 import CancelledOrders from '../components/CancelledOrders'
+import OrderDetails from '../components/OrderDetails'
 
 import '../styles/pages/Profile.scss'
-import OrderDetails from '../components/OrderDetails'
 
 const Profile = () => {
     const user = useSelector(state => state.userReducer.user)
@@ -16,7 +16,6 @@ const Profile = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [showDetails, setShowDetails] = useState(false)
-    console.log(selectedOrder)
 
     useEffect(() => {
         if (!user._id) {
@@ -57,7 +56,7 @@ const Profile = () => {
                 <h2>cancelled orders</h2>
                 <div className='cancelledOrders'>
                     {orders.canceledOrders && orders.canceledOrders.length >= 1 ?
-                    <CancelledOrders orders={orders} />
+                    <CancelledOrders orders={orders} setOrder={setSelectedOrder} setShowDetails={setShowDetails} />
                     : <p>you have not cancelled any orders</p>
                     }
                 </div>

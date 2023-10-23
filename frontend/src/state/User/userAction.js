@@ -62,3 +62,16 @@ export const LOGOUT_USER = (navigate) => {
         navigate('/')
     }
 }
+
+export const GET_USER_BY_ID = (userid, setReviewUser) => {
+    return (dispatch) => {
+        axios.post('http://localhost:9000/user/getuserbyid', {userid})
+        .then(response => {
+            console.log("getuserbyid", response)
+            setReviewUser(response.data)
+        })
+        .catch(error => {
+            console.log("error getting user by id", error)
+        })
+    }
+}

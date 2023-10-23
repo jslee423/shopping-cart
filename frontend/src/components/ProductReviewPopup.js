@@ -1,30 +1,46 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { ADD_REVIEW_TO_STORE, GET_USER_REVIEW, SAVE_REVIEW_TO_DB } from '../state/Products/productAction'
+import checkMark from '../images/check.png'
 
 import '../styles/components/ProductReviewPopup.scss'
-import { SAVE_REVIEW_TO_DB } from '../state/Products/productAction'
 
 const ProductReviewPopup = (props) => {
     const {toggle, product} = props
     const dispatch = useDispatch()
     const user = useSelector(state => state.userReducer.user)
-    const [rating, setRating] = useState('')
+    const review = useSelector(state => state.productReducer.reviews)
+    const [rating, setRating] = useState(1)
     const [headline, setHeadline] = useState('')
-    const [review, setReview] = useState('')
+    const [prodReview, setProdReview] = useState('')
+    const [reviewSubmitted, setReviewSubmitted] = useState(false)
 
-    const addReview = () => {
+    useEffect(() => {
+        dispatch(GET_USER_REVIEW(product._id, user._id))
+        console.log('refresh')
+        console.log(product._id)
+        console.log(user._id)
+        console.log(review)
+
+        return () => {
+            dispatch(ADD_REVIEW_TO_STORE())
+        }
+    }, [product])
+
+    const addReview = (e) => {
         e.preventDefault()
         
         const review = {
             userid: user._id,
+            userName: user.userName,
             orderid: product._id,
             rating: rating,
             headline: headline,
-            review: review
+            review: prodReview
         }
 
-        // dispatch(SAVE_REVIEW_TO_DB(product._id, review))
-        console.log("userid: " + user._id + " orderid: " + product._id + " rating: " + rating + " headline: " + headline + " review: " + review)
+        dispatch(SAVE_REVIEW_TO_DB(product._id, review))
+        setReviewSubmitted(true)
     }
 
     return (
@@ -32,10 +48,22 @@ const ProductReviewPopup = (props) => {
             <div className="popup-content">
                 <span className="close" onClick={toggle}>&times;</span>
                 <h2>add product review</h2>
-                <h3>{product.name}</h3>
-                <h3>{product.price}</h3>
-                <h4>{product.description}</h4>
-                <form id="reviewForm" onSubmit={addReview}>
+                <div className='prodInfo'>
+                    <div className='prodImg'></div>
+                    <div className='prodDetails'>
+                        <h3>name: {product.name}</h3>
+                        <h4>description: {product.description}</h4>
+                        <h4>price: ${product.price.toFixed(2)}</h4>
+                    </div>
+                </div>
+                {review && review.length >= 1 ?
+                <div className='reviewExists'>
+                    <img src={checkMark} alt='check mark' />
+                    <h4>you have already written a review for this product</h4>
+                </div>
+                :
+                !reviewSubmitted ?
+                <form id="reviewForm" onSubmit={(e) => addReview(e)}>
                     <label htmlFor="rating">rating</label>
                         <select name="rating" id="rating" onChange={(e) => setRating(e.target.value)}>
                             <option value="1">1</option>
@@ -55,25 +83,33 @@ const ProductReviewPopup = (props) => {
                             required
                         />
                         <label htmlFor="review">review</label>
-                        <input
+                        {/* <input
                             type="text"
                             id="review"
                             autoComplete='off'
-                            onChange={(e) => setReview(e.target.value)}
-                            value={review}
+                            onChange={(e) => setProdReview(e.target.value)}
+                            value={prodReview}
                             placeholder='review'
                             required
-                        />
-                        {/* <textarea
+                        /> */}
+                        <textarea
                             name="review"
+                            id="review"
                             form="reviewForm"
                             autoComplete='off'
                             placeholder='what do you like or dislike?'
-                            value={review}
-                            onChange={(e) => setReview(e.target.value)}
-                        /> */}
+                            value={prodReview}
+                            onChange={(e) => setProdReview(e.target.value)}
+                            required
+                        />
                         <button type="submit">submit</button>
                 </form>
+                :
+                <div className='reviewSubmit'>
+                    <img src={checkMark} alt='check mark' />
+                    <h4>review submitted!</h4>
+                </div>
+                }
             </div>
         </div>
     )

@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1;
+    z-index: 1; 
 }
   
 .popup-content {
@@ -19,6 +19,96 @@
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     position: relative;
+    width: 50%;
+
+    .prodInfo {
+        margin-top: 1rem;
+        display: flex;
+        // justify-self: center;
+        // align-self: center;
+        justify-content: center;
+        gap: 3rem;
+        .prodImg {
+            background-color: rgb(236, 236, 236);
+            width: 10rem;
+            height: 10rem;
+        }
+
+        h3 {
+            margin-bottom: 0;
+        }
+
+        h4:nth-child(2) {
+            margin: 0;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+
+        label {
+            align-self: flex-start;
+            font-weight: bold;
+        }
+
+        input {
+            border: none;
+            border-radius: 50px;
+            background-color: rgb(236, 236, 236);
+            margin-bottom: 1rem;
+            padding-left: 5px;
+        }
+        
+        select {
+            border: none;
+            border-radius: 50px;
+            background-color: rgb(236, 236, 236);
+            text-align: center;
+            width: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        textarea {
+            border: none;
+            border-radius: 10px;
+            background-color: rgb(236, 236, 236);
+            margin-bottom: 1rem;
+            height: 10rem;
+            padding-left: 5px;
+        }
+
+        button {
+            align-self: center;
+            width: 8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            background-color: $highlight;
+            color: white;
+            cursor: pointer;
+
+            &:hover {
+                transition: all .2s ease-in-out;
+                transform: scale(1.1); 
+                background-color: rgb(0, 151, 0);
+            }
+        }
+    }
+
+    .reviewExists, .reviewSubmit {
+        img {
+            width: 200px;
+            height: auto;
+            margin-top: 2rem;
+        }
+
+        h4 {
+            margin: 0;
+        }
+    }
 }
 
 .close {
@@ -26,7 +116,5 @@
     top: 0;
     right: 1rem;
     font-size: 2rem;
-    // left: 100%;
-    // bottom: 100%;
     cursor: pointer;
 }

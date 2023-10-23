@@ -6,8 +6,8 @@ const initialState = {
         price: 0.00,
         description: "product description",
         rating: 0,
-        reviews: []
     },
+    reviews: [],
     products: []
 }
 
@@ -17,6 +17,11 @@ let productReducer = (state = initialState, action) => {
             return {
                 ...state,
                 products: action.payload.products
+            }
+        case actionTypes.ADD_REVIEW_TO_STORE:
+            return {
+                ...state,
+                reviews: action.payload
             }
         default:
             return state

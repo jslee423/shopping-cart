@@ -29,6 +29,7 @@ export const GET_PRODUCTS_FROM_DB = () => {
     return (dispatch) => {
         axios.get('http://localhost:9000/product/getproducts')
         .then((res) => {
+            console.log("get products form db res: ", res)
             const allProducts = res.data
             dispatch(ADD_PRODUCT_TO_STORE(allProducts))
         })
@@ -46,6 +47,39 @@ export const SAVE_REVIEW_TO_DB = (product_id, review) => {
         })
         .catch((error) => {
             console.log(error)
+        })
+    }
+}
+
+export const GET_PRODUCT_BY_ID = (product_id) => {
+    return (dispatch) => {
+        axios.post('http://localhost:9000/product/getproductbyid', {product_id})
+        .then((res) => {
+            console.log("get prod by id res: ", res)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export const ADD_REVIEW_TO_STORE = (review) => {
+    console.log("adding review to store: ", review)
+    return {
+        type: actionTypes.ADD_REVIEW_TO_STORE,
+        payload: review
+    }
+}
+
+export const GET_USER_REVIEW = (product_id, userid) => {
+    return (dispatch) => {
+        axios.post('http://localhost:9000/product/getuserreview', {product_id, userid})
+        .then((res) => {
+            console.log("get prod by id res: ", res)
+            dispatch(ADD_REVIEW_TO_STORE(res.data.reviews))
+        })
+        .catch(error => {
+            console.log("error", error)
         })
     }
 }

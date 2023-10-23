@@ -45,4 +45,19 @@ route.post('/login', (req, res) => {
     })
 })
 
+route.post('/getuserbyid', (req, res) => {
+    const userid = req.body.userid
+    userDataModel.findOne({_id: userid})
+    .then((existingUser) => {
+        if (existingUser) {
+            res.status(200).send(existingUser)
+        } else {
+            res.status(400).send("user not found")
+        }
+    })
+    .catch(error => {
+        res.status(404).send("error connecting to db")
+    })
+})
+
 module.exports = route;

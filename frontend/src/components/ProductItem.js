@@ -30,7 +30,7 @@ const ProductItem = ({product}) => {
             <div className='productItem__price'>
                 <p onClick={() => navigate(`/products/${product._id}`)}>${product.price.toFixed(2)}</p>
             </div>
-            <p id="prodRating">{product.rating}/5<img src={starImg} alt="star icon" id="starImg" /> (0)</p>
+            <p id="prodRating">{product.rating}/5 <img src={starImg} alt="star icon" id="starImg" /> ({product.reviews.length})</p>
             <button id="addProductBtn" title="add to cart" onClick={() => addProductToCart(product)}>+</button>
         </div>
     )
