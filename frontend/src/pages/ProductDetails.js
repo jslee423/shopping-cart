@@ -18,7 +18,11 @@ const ProductDetails = ({product}) => {
         if (cartItem) {
             dispatch(UPDATE_ITEM_IN_CART(cartItem._id, cartItem.quantity+Number(newQuantity)))
         } else {
-            dispatch(ADD_ITEM_TO_CART(product))
+            const newProduct = {
+                ...product,
+                quantity: Number(newQuantity)
+            }
+            dispatch(ADD_ITEM_TO_CART(newProduct))
         }
     }
 
@@ -38,16 +42,17 @@ const ProductDetails = ({product}) => {
             </div>
 
             <div className='productInfoSection'>
-                <div className="productImage"></div>
                 <div className='productInfo'>
-                    <h1>{product.name}</h1>
-                    <h3>${product.price.toFixed(2)}</h3>
-                    <h3>{product.description}</h3>
-                    <h3>{product.rating}/5 <img src={starImg} alt="star icon" className="starImg" /> ({product.reviews.length})</h3>
-
+                    <div className="productImage"></div>
+                    <div className='prodDetails'>
+                        <h1>{product.name}</h1>
+                        <h3 id="prodRating">{product.rating}/5 <img src={starImg} alt="star icon" className="starImg" /> ({product.reviews.length})</h3>
+                        <h3>{product.description}</h3>
+                    </div>
                 </div>
                 <div className='addprodtocart'>
                     <div>
+                        <h3>${(product.price * Number(newQuantity)).toFixed(2)}</h3>
                         <label htmlFor="addqty">qty: </label>
                         <input id='addqty' type="number" min={1} value={newQuantity} onChange={(e) => quantityOnChange(e)}></input>
                     </div>
