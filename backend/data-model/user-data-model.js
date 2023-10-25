@@ -10,7 +10,8 @@ let userSchema = new schemaObj(
         firstName: {type: String, require: true},
         lastName: {type: String, require: true},
         address: String,
-        mobile: Number
+        mobile: Number,
+        notifications: Object
     }
 )
 

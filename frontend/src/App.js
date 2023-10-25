@@ -4,17 +4,19 @@ import AnimatedRoutes from "./components/AnimatedRoutes"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 import IsLoadingScreen from "./components/IsLoadingScreen"
+import Notifications from "./components/Notifications"
 
 import './App.scss'
-import Notifications from "./components/Notifications"
+import { useSelector } from "react-redux"
 
 
 function App() {
+    const user = useSelector(state => state.userReducer.user)
     return (
         <BrowserRouter>
             <Suspense fallback={<IsLoadingScreen />}>
                 <Navbar />
-                <Notifications />
+                {user._id && <Notifications />}
                 <AnimatedRoutes />
                 {/* <Footer /> */}
             </Suspense>

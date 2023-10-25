@@ -60,4 +60,54 @@ route.post('/getuserbyid', (req, res) => {
     })
 })
 
+route.post('/addnotification', (req, res) => {
+    let userid = req.body.userid
+    let notification = req.body.notification
+
+    userDataModel.findOne({_id: userid})
+    .then(existingUser => {
+        if (existingUser) {
+            //user found
+            userDataModel.updateOne({_id: userid}, {$push: {notifications: notification}})
+            .then(response => {
+                console.log("notification added", response)
+                res.status(200).send(response)
+            })
+            .catch(error => {
+                console.log("error adding notification", error)
+            })
+        } else {
+            console.log("no user found")
+        }
+    })
+    .catch(error => {
+        console.log("error accessing user db", error)
+    })
+})
+
+route.post('/removenotification', (req, res) => {
+    let userid = req.body.userid
+    let activity = req.body.activity
+
+    userDataModel.findOne({_id: userid})
+    .then(existingUser => {
+        if (existingUser) {
+            //user found
+            userDataModel.updateOne({_id: userid}, {$pull: {notifications: {activity: activity}}})
+            .then(response => {
+                console.log("notification removed", response)
+                res.send(response)
+            })
+            .catch(error => {
+                console.log("error removing notification", error)
+            })
+        } else {
+            console.log("no user found")
+        }
+    })
+    .catch(error => {
+        console.log("error accessing user db", error)
+    })
+})
+
 module.exports = route;

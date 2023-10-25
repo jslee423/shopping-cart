@@ -1,6 +1,6 @@
 @import '../../utilities/variables';
 
-#notifications {
+#notifButton {
     background-color: transparent;
     border: none;
     position: fixed;
@@ -43,9 +43,14 @@
     right: 0;
     background-color: lightslategray;
     overflow-x: hidden;
-    transition: 0.3s;
-    padding-top: 60px;
+    transition: 0.2s;
+    // padding-top: 40px;
     box-shadow: -5px 0px 30px 1px #aaaaaa;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .closebtn {
         position: absolute;
@@ -55,6 +60,69 @@
         // margin-left: 50px;
         background-color: transparent;
         border: none;
-        color: white
+        color: white;
+        cursor: pointer;
+
+        &:hover {
+            transition: all .2s ease-in-out;
+            transform: scale(1.1); 
+        }
+    }
+
+    #cartCount {
+        margin: 0;
+        border: 1px solid white;
+        border-radius: 5px;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+    }
+
+    .currentCart {
+        border: 1px solid white;
+        width: 90%;
+        min-height: 10rem;
+        border-radius: 10px;
+    }
+
+    #checkout, .notifButton {
+        border: none;
+        border-radius: 50px;
+        margin-top: 0.5rem;
+        padding: .1rem 1rem .1rem 1rem;
+        font-size: 1rem;
+        background-color: $highlight;
+        color: white;
+        cursor: pointer;
+
+        &:hover {
+            transition: all .2s ease-in-out;
+            transform: scale(1.1); 
+        }
+    }
+
+    h3 {
+        margin-top: 3rem;
+    }
+
+    .activitySection {
+        // border-top: 1px solid white;
+        border-bottom: 1px solid white;
+        width: 95%;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $highlight;
+            transition: all .2s ease-in-out;
+            transform: scale(1.1); 
+        }
+
+        .activityDate {
+            margin-bottom: 0;
+        }
+        .activity {
+            margin-top: 0;
+        }
     }
 }

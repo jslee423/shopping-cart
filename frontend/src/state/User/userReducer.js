@@ -8,7 +8,8 @@ const initialState = {
         firstName: "",
         lastName: "",
         address: "",
-        mobile: null
+        mobile: null,
+        notifications: []
     }
 }
 
@@ -18,6 +19,11 @@ let userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.payload
+            }
+        case actionTypes.ADD_NOTIFICATION_TO_STORE:
+            return {
+                ...state,
+                notifications: action.payload
             }
         default:
             return state

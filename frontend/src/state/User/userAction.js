@@ -10,6 +10,13 @@ export const ADD_USER_TO_STORE = (newUser) => {
     }
 }
 
+export const ADD_NOTIFICATION_TO_STORE = (notification) => {
+    return {
+        type: actionTypes.ADD_NOTIFICATION_TO_STORE,
+        payload: notification
+    }
+}
+
 export const SAVE_USER_TO_DB = (user, navigate) => {
     return (dispatch) => {
         axios.post('http://localhost:9000/user/signup', user)
@@ -72,6 +79,31 @@ export const GET_USER_BY_ID = (userid, setReviewUser) => {
         })
         .catch(error => {
             console.log("error getting user by id", error)
+        })
+    }
+}
+
+export const SAVE_NOTIFICATION_TO_DB = (userid, notification) => {
+    return (dispatch) => {
+        axios.post('http://localhost:9000/user/addnotification', {userid, notification})
+        .then((res) => {
+            console.log("notification saved ", res)
+            // dispatch(ADD_NOTIFICATION_TO_STORE(res.data.notifications))
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+}
+
+export const REMOVE_NOTIFICATION = (userid, activity) => {
+    return (dispatch) => {
+        axios.post('http://localhost:9000/user/removenotification', {userid, activity})
+        .then((res => {
+            console.log("notification removed", res)
+        }))
+        .catch(error => {
+            console.log("remove notifcation error: ", error)
         })
     }
 }

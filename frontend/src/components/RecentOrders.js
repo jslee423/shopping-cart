@@ -5,6 +5,7 @@ import { UPDATE_ITEM_IN_CART, ADD_ITEM_TO_CART } from '../state/Cart/cartAction'
 
 import '../styles/components/RecentOrders.scss'
 import { useNavigate } from 'react-router-dom'
+import { SAVE_NOTIFICATION_TO_DB } from '../state/User/userAction'
 
 const RecentOrders = ({ orders, setOrder, setShowDetails }) => {
     const dispatch = useDispatch()
@@ -39,9 +40,15 @@ const RecentOrders = ({ orders, setOrder, setShowDetails }) => {
 
     const cancelOrder = (userid, orderid) => {
         const cancelDate = new Date()
+        const notification = {
+            date: cancelDate,
+            activity: `cancelled order: ${orderid}`
+        }
+
         dispatch(CANCEL_ORDER(userid, orderid, cancelDate))
         dispatch(GET_USER_ORDERS(userid, "PROCESSING"))
         dispatch(GET_USER_ORDERS(userid, "CANCELLED"))
+        dispatch(SAVE_NOTIFICATION_TO_DB(userid, notification))
     }
 
     const reviewOrder = (order) => {

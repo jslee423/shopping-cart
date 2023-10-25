@@ -82,7 +82,7 @@ const PaymentForm = (props) => {
             <input
                 type="text"
                 id="nameOnCard"
-                class="name-on-card"
+                className="name-on-card"
                 placeholder="enter name on card"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
@@ -92,7 +92,7 @@ const PaymentForm = (props) => {
             <input
                 type="text"
                 id="cardNumber"
-                class="card-number"
+                className="card-number"
                 placeholder="____-____-____-____"
                 minLength={19}
                 maxLength={19}
@@ -105,7 +105,7 @@ const PaymentForm = (props) => {
             <input 
                 type="text"
                 id="expirationDate"
-                class="expiration-date"
+                className="expiration-date"
                 placeholder="mm/yy"
                 minLength={5}
                 maxLength={5}
@@ -119,7 +119,7 @@ const PaymentForm = (props) => {
             <input
                 type="text"
                 id="cvv"
-                class="cvv"
+                className="cvv"
                 placeholder="cvv"
                 minLength={3}
                 maxLength={3}
