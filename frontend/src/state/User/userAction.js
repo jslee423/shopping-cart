@@ -70,12 +70,13 @@ export const LOGOUT_USER = (navigate) => {
     }
 }
 
-export const GET_USER_BY_ID = (userid, setReviewUser) => {
+// export const GET_USER_BY_ID = (userid, setReviewUser) => {
+    export const GET_USER_BY_ID = (userid) => {
     return (dispatch) => {
         axios.post('http://localhost:9000/user/getuserbyid', {userid})
         .then(response => {
             console.log("getuserbyid", response)
-            setReviewUser(response.data)
+            dispatch(ADD_USER_TO_STORE(response.data))
         })
         .catch(error => {
             console.log("error getting user by id", error)
@@ -89,6 +90,7 @@ export const SAVE_NOTIFICATION_TO_DB = (userid, notification) => {
         .then((res) => {
             console.log("notification saved ", res)
             // dispatch(ADD_NOTIFICATION_TO_STORE(res.data.notifications))
+            dispatch(GET_USER_BY_ID(userid))
         })
         .catch((error) => {
             console.log(error)
@@ -101,9 +103,37 @@ export const REMOVE_NOTIFICATION = (userid, activity) => {
         axios.post('http://localhost:9000/user/removenotification', {userid, activity})
         .then((res => {
             console.log("notification removed", res)
+            dispatch(GET_USER_BY_ID(userid))
         }))
         .catch(error => {
             console.log("remove notifcation error: ", error)
         })
     }
 }
+
+export const GET_USER_NOTIFICATIONS = (userid) => {
+    return (dispatch) => {
+        axios.post('http://localhost:9000/user/getnotifications', {userid})
+        .then((res) => {
+            console.log("res from get notifications", res)
+            // dispatch(ADD_NOTIFICATION_TO_STORE(res.data))
+            dispatch(ADD_USER_TO_STORE(res.data))
+        })
+        .catch(error => {
+            console.log("error", error)
+        })
+    }
+}
+
+// export const GET_USER_REVIEW = (product_id, userid) => {
+//     return (dispatch) => {
+//         axios.post('http://localhost:9000/product/getuserreview', {product_id, userid})
+//         .then((res) => {
+//             console.log("get prod by id res: ", res)
+//             dispatch(ADD_REVIEW_TO_STORE(res.data.reviews))
+//         })
+//         .catch(error => {
+//             console.log("error", error)
+//         })
+//     }
+// }

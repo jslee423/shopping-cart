@@ -77,7 +77,7 @@ const Payment = (props) => {
                 
                 dispatch(EMPTY_CART())
                 if (user._id) {
-                    dispatch(SAVE_CART_TO_DB(cartList, user._id))
+                    dispatch(SAVE_CART_TO_DB([], user._id))
                 }
             }, 2000)
         }

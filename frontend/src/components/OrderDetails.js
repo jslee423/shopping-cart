@@ -31,10 +31,6 @@ const OrderDetails = ({ order, setShowDetails }) => {
             cnt += item.quantity
         }
 
-        // return {
-        //     amount,
-        //     count
-        // }
         setAmount(amount)
         setCount(cnt)
         setTotal(amount * (tax + 1) + shipping)
@@ -71,10 +67,9 @@ const OrderDetails = ({ order, setShowDetails }) => {
             animate={{ width: '100%' }}
             exit={{ width: window.innerWidth, transition: {duration: 0.1} }}
         >
+            <button id="backToProfile" onClick={() => setShowDetails(false)}>&#8612; back to profile</button>
             <h1>order details for</h1>
             <h2>order #: {order._id}</h2>
-            {/* <NavLink to="/profile" activeclassname="active" id='backToProfile'>&#8612; back to profile</NavLink> */}
-            <button id="backToProfile" onClick={() => setShowDetails(false)}>&#8612; back to profile</button>
             <h3>status: {order.status}</h3>
             <h3>items purchased:</h3>
             <table>

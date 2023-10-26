@@ -26,6 +26,7 @@ export const UPDATE_ITEM_IN_CART = (id, quantity) => {
 }
 
 export const EMPTY_CART = (item) => {
+    console.log("empty cart item", item)
     return {
         type: actionTypes.EMPTY_CART,
         payload: {item}
@@ -37,7 +38,7 @@ export const SAVE_CART_TO_DB = (cart, userid) => {
         axios.post('http://localhost:9000/cart/saveusercart',
             {userid, cart}
         ).then((ServerData) => {
-            console.log(ServerData.data.cart)
+            console.log("SAVE_CART_TO_DB response", ServerData.data.cart)
         })
         .catch((error) => {
             console.log("Error while saving cart", error)

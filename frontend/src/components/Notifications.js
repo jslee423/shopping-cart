@@ -5,20 +5,18 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { UPDATE_ITEM_IN_CART, ADD_ITEM_TO_CART } from '../state/Cart/cartAction'
 
 import '../styles/components/Notifications.scss'
-import { REMOVE_NOTIFICATION } from '../state/User/userAction'
+import { GET_USER_NOTIFICATIONS, REMOVE_NOTIFICATION } from '../state/User/userAction'
 
 const Notifications = () => {
-    // const [showNotifications, setShowNotifications] = useState(false)
     const notificationRef = useRef()
     const cartList = useSelector(state => state.cartReducer)
     const user = useSelector(state => state.userReducer.user)
     const products = useSelector(state => state.productReducer.products)
+    const order = useSelector(state => state.orderReducer)
     const navigate = useNavigate()
     const location = useLocation()
     const [currentViewProd, setCurrentViewProd] = useState('')
     const dispatch = useDispatch()
-
-    console.log("userNotif", user.notifications)
 
     useEffect(() => {
         if (location.pathname.split('/')[1] === "products" && location.pathname.split('/').length > 2) {
@@ -26,6 +24,10 @@ const Notifications = () => {
             setCurrentViewProd(currentProd[0])
         }
     }, [])
+
+    useEffect(() => {
+        dispatch(GET_USER_NOTIFICATIONS(user._id))
+    }, [order.recentOrders, order.canceledOrders])
 
     const openNotifications = () => {
         notificationRef.current.style.width = "25rem";
@@ -72,7 +74,7 @@ const Notifications = () => {
             :
             null
             }
-            <h3>recent activity</h3>
+            <h3>recent activity ({user.notifications?.length})</h3>
             {user.notifications && user.notifications.length >= 1 ?
             user.notifications.map((notification, index) => {
                 return (

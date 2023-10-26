@@ -1,4 +1,5 @@
 import * as actionTypes from '../actionTypes'
+import { SAVE_NOTIFICATION_TO_DB } from '../User/userAction'
 import axios from 'axios'
 
 export const ADD_ORDER_TO_STORE = (order) => {
@@ -73,12 +74,14 @@ export const GET_USER_ORDERS = (userid, status) => {
     }
 }
 
-export const CANCEL_ORDER = (userid, orderid, cancelDate) => {
+export const CANCEL_ORDER = (userid, orderid, cancelDate, notification) => {
     return (dispatch) => {
         axios.post('http://localhost:9000/order/cancelorder', {userid, orderid, cancelDate})
         .then(data => {
-            console.log(data)
-            // dispatch(GET_USER_ORDERS(userid, "CANCELLED"))
+            console.log("CANCEL_ORDER response", data)
+            dispatch(GET_USER_ORDERS(userid, "PROCESSING"))
+            dispatch(GET_USER_ORDERS(userid, "CANCELLED"))
+            // dispatch(SAVE_NOTIFICATION_TO_DB(userid, notification))
         })
         .catch(error => {
             console.log("error while cancelling order", error)

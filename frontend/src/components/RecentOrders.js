@@ -7,7 +7,7 @@ import '../styles/components/RecentOrders.scss'
 import { useNavigate } from 'react-router-dom'
 import { SAVE_NOTIFICATION_TO_DB } from '../state/User/userAction'
 
-const RecentOrders = ({ orders, setOrder, setShowDetails }) => {
+const RecentOrders = ({ orders, setOrder, setShowDetails, setCancelled }) => {
     const dispatch = useDispatch()
     const currentCart = useSelector(state => state.cartReducer)
     const user = useSelector(state => state.userReducer.user)
@@ -45,10 +45,12 @@ const RecentOrders = ({ orders, setOrder, setShowDetails }) => {
             activity: `cancelled order: ${orderid}`
         }
 
-        dispatch(CANCEL_ORDER(userid, orderid, cancelDate))
-        dispatch(GET_USER_ORDERS(userid, "PROCESSING"))
-        dispatch(GET_USER_ORDERS(userid, "CANCELLED"))
+        dispatch(CANCEL_ORDER(userid, orderid, cancelDate, notification))
+        // dispatch(GET_USER_ORDERS(userid, "PROCESSING"))
+        // dispatch(GET_USER_ORDERS(userid, "CANCELLED"))
         dispatch(SAVE_NOTIFICATION_TO_DB(userid, notification))
+        setCancelled(true)
+        console.log('cart after cancel: ', currentCart)
     }
 
     const reviewOrder = (order) => {

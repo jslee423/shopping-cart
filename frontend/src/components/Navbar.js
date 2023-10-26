@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { LOGOUT_USER } from '../state/User/userAction'
 import exitImg from '../images/exit.png'
-import notificationImg from '../images/bell.png'
+import { EMPTY_CART } from '../state/Cart/cartAction'
 
 import '../styles/components/Navbar.scss'
 
@@ -27,9 +27,10 @@ const Navbar = () => {
         dispatch(LOGOUT_USER(navigate))
     }
 
-    const refreshPage = () => {
-        window.location.reload(false);
-    }
+    // const refreshPage = () => {
+    //     dispatch(EMPTY_CART())
+    //     window.location.reload(false);
+    // }
 
     return (
         <nav className='navbar' id="navbar">
@@ -42,7 +43,7 @@ const Navbar = () => {
             </nav>
             <nav id="navright">
                 {user._id && 
-                    <button id='logout' title="logout" onClick={() => refreshPage()}><img src={exitImg} alt='logout icon' /></button>
+                    <button id='logout' title="logout" onClick={() => logout()}><img src={exitImg} alt='logout icon' /></button>
                 }
                 <NavLink to={user._id ? "/profile" : "/login"} activelassname="active">{user._id ? user.userName : "login"}
                 </NavLink>

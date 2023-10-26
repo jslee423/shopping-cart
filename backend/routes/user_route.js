@@ -110,4 +110,19 @@ route.post('/removenotification', (req, res) => {
     })
 })
 
+route.post('/getnotifications', (req, res) => {
+    userDataModel.findOne({_id: req.body.userid})
+    .then(existingUser => {
+        if (existingUser) {
+            // res.status(200).send(existingUser.notifications)
+            res.status(200).send(existingUser)
+        } else {
+            console.log("no review by user for this product")
+        }
+    })
+    .catch(error => {
+        console.log(error)
+    })
+})
+
 module.exports = route;

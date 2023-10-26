@@ -16,6 +16,8 @@ const Profile = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [showDetails, setShowDetails] = useState(false)
+    const [cancelled, setCancelled] = useState(false)
+    console.log("cancelled", cancelled)
 
     useEffect(() => {
         if (!user._id) {
@@ -26,6 +28,12 @@ const Profile = () => {
             dispatch(GET_USER_ORDERS(user._id, "CANCELLED"))
         }
     }, [])
+
+    useEffect(() => {
+        dispatch(GET_USER_ORDERS(user._id, "PROCESSING"))
+        dispatch(GET_USER_ORDERS(user._id, "CANCELLED"))
+        setCancelled(false)
+    }, [cancelled])
 
     return (
         <motion.div 
@@ -45,7 +53,7 @@ const Profile = () => {
                 <h2>recent orders</h2>
                 <div className='recentOrders'>
                     {orders.recentOrders && orders.recentOrders.length >= 1 ?
-                    <RecentOrders orders={orders} setOrder={setSelectedOrder} setShowDetails={setShowDetails} />
+                    <RecentOrders orders={orders} setOrder={setSelectedOrder} setShowDetails={setShowDetails} setCancelled={setCancelled}/>
                     : <p>you have not made any orders</p>
                     }
                 </div>
