@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import starImg from '../images/star.png'
@@ -12,6 +12,15 @@ const ProductDetails = ({product}) => {
     const dispatch = useDispatch()
     const cart = useSelector(state => state.cartReducer)
     const [newQuantity, setNewQuantity] = useState(1)
+    const [avgRating, setAvgRating] = useState(0)
+
+    useEffect(() => {
+        // const initialValue = 0;
+        if (product.reviews && product.reviews.length >= 1) {
+            const sumOfRatings = product.reviews.reduce((accumulator, currentValue) => accumulator + Number(currentValue.rating), 0)
+            setAvgRating(sumOfRatings/product.reviews.length)
+        }
+    })
 
     const addProductToCart = (product) => {
         const cartItem = cart.find(item => item._id === product._id)
@@ -46,7 +55,7 @@ const ProductDetails = ({product}) => {
                     <div className="productImage"></div>
                     <div className='prodDetails'>
                         <h1>{product.name}</h1>
-                        <h3 id="prodRating">{product.rating}/5 <img src={starImg} alt="star icon" className="starImg" /> ({product.reviews.length})</h3>
+                        <h3 id="prodRating">{avgRating}/5 <img src={starImg} alt="star icon" className="starImg" /> ({product.reviews.length})</h3>
                         <h3>{product.description}</h3>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ADD_ITEM_TO_CART, UPDATE_ITEM_IN_CART } from '../state/Cart/cartAction'
 import { NavLink, useNavigate } from 'react-router-dom'
@@ -10,6 +10,15 @@ const ProductItem = ({product}) => {
     const cart = useSelector(state => state.cartReducer)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [avgRating, setAvgRating] = useState(0)
+
+    useEffect(() => {
+        // const initialValue = 0;
+        if (product.reviews && product.reviews.length >= 1) {
+            const sumOfRatings = product.reviews.reduce((accumulator, currentValue) => accumulator + Number(currentValue.rating), 0)
+            setAvgRating(sumOfRatings/product.reviews.length)
+        }
+    })
 
     const addProductToCart = (product) => {
         const cartItem = cart.find(item => item._id === product._id)
@@ -30,7 +39,7 @@ const ProductItem = ({product}) => {
             <div className='productItem__price'>
                 <p onClick={() => navigate(`/products/${product._id}`)}>${product.price.toFixed(2)}</p>
             </div>
-            <p id="prodRating">{product.rating}/5 <img src={starImg} alt="star icon" id="starImg" /> ({product.reviews.length})</p>
+            <p id="prodRating">{avgRating}/5 <img src={starImg} alt="star icon" id="starImg" /> ({product.reviews.length})</p>
             <button id="addProductBtn" title="add to cart" onClick={() => addProductToCart(product)}>+</button>
         </div>
     )
