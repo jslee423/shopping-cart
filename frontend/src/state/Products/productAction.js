@@ -44,6 +44,8 @@ export const SAVE_REVIEW_TO_DB = (product_id, review) => {
         axios.post('http://localhost:9000/product/addreview', {product_id, review})
         .then((res) => {
             console.log("review saved ", res)
+            // dispatch(GET_REVIEWS(product_id))
+            dispatch(GET_PRODUCTS_FROM_DB())
         })
         .catch((error) => {
             console.log(error)
@@ -76,6 +78,19 @@ export const GET_USER_REVIEW = (product_id, userid) => {
         axios.post('http://localhost:9000/product/getuserreview', {product_id, userid})
         .then((res) => {
             console.log("get prod by id res: ", res)
+            dispatch(ADD_REVIEW_TO_STORE(res.data.reviews))
+        })
+        .catch(error => {
+            console.log("error", error)
+        })
+    }
+}
+
+export const GET_REVIEWS = (product_id) => {
+    return (dispatch) => {
+        axios.post('http://localhost:9000/product/getreviews', {product_id})
+        .then((res) => {
+            console.log("get prod reviews res: ", res)
             dispatch(ADD_REVIEW_TO_STORE(res.data.reviews))
         })
         .catch(error => {

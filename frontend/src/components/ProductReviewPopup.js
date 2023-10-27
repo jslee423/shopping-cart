@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ADD_REVIEW_TO_STORE, GET_USER_REVIEW, SAVE_REVIEW_TO_DB } from '../state/Products/productAction'
+import { ADD_REVIEW_TO_STORE, GET_REVIEWS, GET_USER_REVIEW, SAVE_REVIEW_TO_DB } from '../state/Products/productAction'
 import checkMark from '../images/check.png'
 
 import '../styles/components/ProductReviewPopup.scss'
@@ -24,6 +24,7 @@ const ProductReviewPopup = (props) => {
 
         return () => {
             dispatch(ADD_REVIEW_TO_STORE())
+            setReviewSubmitted(false)
         }
     }, [product])
 
@@ -42,6 +43,7 @@ const ProductReviewPopup = (props) => {
         dispatch(SAVE_REVIEW_TO_DB(product._id, review))
         setReviewSubmitted(true)
     }
+    console.log("reviews", review)
 
     return (
         <div className="reviewPopup">

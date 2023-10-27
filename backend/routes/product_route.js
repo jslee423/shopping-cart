@@ -38,6 +38,21 @@ route.post('/getuserreview', (req, res) => {
     })
 })
 
+route.post('/getreviews', (req, res) => {
+    productDataModel.findOne({_id: req.body.product_id})
+    .then(product => {
+        console.log('proudctreviews: ', product)
+        if (product) {
+            res.send(product)
+        } else {
+            console.log("no review by user for this product")
+        }
+    })
+    .catch(error => {
+        console.log(error)
+    })
+})
+
 route.post('/addproduct', (req, res) => {
     let product = req.body
     console.log(product)
@@ -72,17 +87,17 @@ route.post('/addreview', (req, res) => {
     let userReview = req.body.review
 
     productDataModel.findOne({_id: product_id})
-    .then(res => {
-        console.log("review added for product id: " + res)
-        if (res) {
-            const foundReview = res.reviews.filter(review => review.userid === userReview.userid)
+    .then(existingProduct => {
+        console.log("review added for product id: " + existingProduct)
+        if (existingProduct) {
+            const foundReview = existingProduct.reviews.filter(review => review.userid === userReview.userid)
             if (foundReview.length > 0) {
                 console.log("user already reviewed product")
             } else {
-                productDataModel.updateOne({_id: res._id}, {$push: {reviews: userReview}})
-                .then(res => {
-                    console.log("update res", res)
-                    res.status(200).send(res)
+                productDataModel.updateOne({_id: existingProduct._id}, {$push: {reviews: userReview}})
+                .then(response => {
+                    console.log("update res", response)
+                    res.send(response)
                 })
                 .catch(error => {
                     console.log("update error", error)
