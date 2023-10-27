@@ -17,7 +17,6 @@ const Profile = () => {
     const dispatch = useDispatch()
     const [showDetails, setShowDetails] = useState(false)
     const [cancelled, setCancelled] = useState(false)
-    console.log("cancelled", cancelled)
 
     useEffect(() => {
         if (!user._id) {

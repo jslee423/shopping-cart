@@ -124,16 +124,3 @@ export const GET_USER_NOTIFICATIONS = (userid) => {
         })
     }
 }
-
-// export const GET_USER_REVIEW = (product_id, userid) => {
-//     return (dispatch) => {
-//         axios.post('http://localhost:9000/product/getuserreview', {product_id, userid})
-//         .then((res) => {
-//             console.log("get prod by id res: ", res)
-//             dispatch(ADD_REVIEW_TO_STORE(res.data.reviews))
-//         })
-//         .catch(error => {
-//             console.log("error", error)
-//         })
-//     }
-// }

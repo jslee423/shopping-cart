@@ -65,7 +65,6 @@ const ProductDetails = ({product}) => {
                 {product.reviews.length >= 1 ?
                 product.reviews.map((review, index) => {
                     return (
-                        <>
                         <div key={index} className="productReview">
                             <p className='reviewUser'><img src={userIcon} alt="user profile icon" className='userIcon' />{review.userName}</p>
                             <div className='reviewSection'>
@@ -74,7 +73,6 @@ const ProductDetails = ({product}) => {
                             </div>
                             <p>{review.review}</p>
                         </div>
-                        </>
                     )
                 })
                 :
